@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 export class WhereDoYouGo extends Component {
   render() {
     return (
-      <MainSection></MainSection>
+      <Login></Login>
     );
   }
 }
