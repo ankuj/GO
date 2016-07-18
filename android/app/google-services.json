@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "152106459338",
+    "project_id": "firebase-wheredoyougo"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152106459338:android:90ca1f26375e10de",
+        "android_client_info": {
+          "package_name": "com.wheredoyougo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152106459338-fstetjvkr9tn15lt7m8tfqvk6osdi752.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wheredoyougo",
+            "certificate_hash": "CA6D6F64DAA44E3F9DAD362C4CF2C8D6BF36F0BF"
+          }
+        },
+        {
+          "client_id": "152106459338-0g2npu7m1eipe9166h9iik2dtmvonjii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2Yek4GzygGHxUqDKi3IbHSCod3INAVaU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
