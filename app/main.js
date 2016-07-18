@@ -1,7 +1,9 @@
-//import { NavAllDay } from './components/debug/MyScene';
-import { MainSection } from './components/mainSection';
 import React, { Component } from 'react';
+import { Navigator } from 'react-native';
+
 import { Login } from './components/login';
+import { MainSection } from './components/mainSection';
+
 //import Settings from './settings';
 //const settings = Settings.load();
 
@@ -10,7 +12,7 @@ export class WhereDoYouGo extends Component {
     return (
 
     <Navigator
-      style={styles.container}
+
       initialRoute={{id: 'login'}}
       renderScene={this.navigatorRenderScene}/>
 
@@ -23,10 +25,8 @@ export class WhereDoYouGo extends Component {
     switch (route.id) {
       case 'login':
         return (<Login navigator={navigator} title='login'></Login>);
-        //return (<First navigator={navigator} title="first"/>);
       case 'main-section':
-        return (<MainSection navigator={navigator} title="main-section"/>);
-        //return (<Second navigator={navigator} title="second"/>);
+        return (<MainSection navigator={navigator} title='main-section'/>);
     }
   }
 }
