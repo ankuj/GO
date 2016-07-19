@@ -87,10 +87,10 @@ export class Login extends Component {
       })
       .catch((err) => {
 
-        console.log('SignIn error: ' + err.message);
+        console.log('SignIn error: ' + err);
 
         //todo: Hack to keep going to the map
-        //this.navMainSection();
+        this.navMainSection();
 
       });
   }
