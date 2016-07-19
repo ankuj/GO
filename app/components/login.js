@@ -12,12 +12,12 @@ export class Login extends Component {
 
   setState(user) {
 
-    AsyncStorage.setItem('@UserData:key', user)
+    AsyncStorage.setItem('@UserData:key', JSON.stringify(user))
       .then((re) => {
-        console.log(re)
+        console.log('Success storing user:' + re);
       })
       .catch((error) => {
-        console.log(error)
+        console.log('Error storing the key: ' + error);
       });
   }
 
