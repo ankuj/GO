@@ -37,7 +37,7 @@ export class Login extends Component {
             style={{width: 48, height: 48}}
             size={GoogleSigninButton.Size.Icon}
             color={GoogleSigninButton.Color.Dark}
-            onPress={this.handleGoogleSignIn}/>
+            onPress={this.handleGoogleSignIn.bind(this)}/>
 
         </View>
 
@@ -88,6 +88,9 @@ export class Login extends Component {
       .catch((err) => {
 
         console.log('SignIn error: ' + err.message);
+
+        //todo: Hack to keep going to the map
+        this.navMainSection();
 
       });
   }
