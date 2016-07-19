@@ -55,7 +55,7 @@ export class Login extends Component {
       scopes: [
         'email', 'profile', 'https://www.googleapis.com/auth/plus.profile.emails.read', 'https://www.googleapis.com/auth/plus.login'
       ],
-      webClientId: "152106459338-fstetjvkr9tn15lt7m8tfqvk6osdi752.apps.googleusercontent.com",
+      webClientId: "152106459338-0g2npu7m1eipe9166h9iik2dtmvonjii.apps.googleusercontent.com",
       offlineAccess: true // if you want to access Google API on behalf of the user FROM YOUR SERVER
     }).then(() => {
       GoogleSignin.currentUserAsync()
@@ -90,7 +90,7 @@ export class Login extends Component {
         console.log('SignIn error: ' + err.message);
 
         //todo: Hack to keep going to the map
-        this.navMainSection();
+        //this.navMainSection();
 
       });
   }
