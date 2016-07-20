@@ -39,31 +39,30 @@ export class Map extends Component {
   //}
 
   //Scope issues with this
-  //onRegionChange(region) {
-  //  this.setState({ region });
-  //}
+  onRegionChange(region) {
+    this.setState({ region });
+  }
 
   render() {
-    var { width, height } = Dimensions.get('window');
+    const { width, height } = Dimensions.get('window');
+    
     return (
       <View style={styles.container}>
         <MapView
-          style={styles.map}
-          initialRegion={this.state.region}
+          style={ styles.map }
+          initialRegion={ this.state.region }
+          onRegionChange={ this.onRegionChange.bind(this) }>
 
-          >
-          {this.state.dataSource.map(marker => (
-
+          { this.state.dataSource.map(marker => (
             <MapView.Marker
               key={this.state.id++}
               coordinate={marker}
               title={marker.name}
               centerOffset={{ x: -18, y: -60 }}
               anchor={{ x: 0.69, y: 1 }}
-              image={require('./assets/flag-blue.png')}
-              />
+              image={require('./assets/flag-blue.png')}/>
+          )) }
 
-          ))}
         </MapView>
       </View>
     );
