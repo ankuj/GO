@@ -13,62 +13,58 @@ export class Map extends Component {
   constructor(props, context) {
     super(props, context);
 
-    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    //let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(COUNTRIES),
-      cache: true
+      dataSource: COUNTRIES,//ds.cloneWithRows(COUNTRIES),
+      cache: true,
+      region: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+      id: 0
     };
   }
 
-  toggleCache() {
-    // a hack to force listview to reload with the same data
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows([]),
-    });
-    this.setState({
-      cache: !this.state.cache,
-      dataSource: this.state.dataSource.cloneWithRows(COUNTRIES),
-    });
-  }
+  //toggleCache() {
+  //  // a hack to force listview to reload with the same data
+  //  this.setState({
+  //    dataSource: this.state.dataSource.cloneWithRows([]),
+  //  });
+  //  this.setState({
+  //    cache: !this.state.cache,
+  //    dataSource: this.state.dataSource.cloneWithRows(COUNTRIES),
+  //  });
+  //}
+
+  //Scope issues with this
+  //onRegionChange(region) {
+  //  this.setState({ region });
+  //}
 
   render() {
     var { width, height } = Dimensions.get('window');
     return (
       <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={this.toggleCache} style={[styles.bubble, styles.button]}>
-            <Text style={styles.buttonText}>{this.state.cache ? "Cached" : "Not cached"}</Text>
-          </TouchableOpacity>
-        </View>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(region) => {
-            return (
-              <View
-                style={styles.item}>
-                <Text>{region.name}</Text>
-                <MapView
-                  style={{
-                    width: width - (HORIZONTAL_PADDING*2),
-                    height: width - (HORIZONTAL_PADDING*2),
-                  }}
-                  initialRegion={region}
-                  cacheEnabled={this.state.cache}
-                  zoomEnabled={true}
-                  scrollingEnabled={true}
-                  loadingIndicatorColor={"#666666"}
-                  loadingBackgroundColor={"#eeeeee"}>
-                  <MapView.Marker
-                    coordinate={region}
-                    centerOffset={{ x: -18, y: -60 }}
-                    anchor={{ x: 0.69, y: 1 }}
-                    image={require('./assets/flag-blue.png')}
-                  />
-                </MapView>
-                <View style={styles.divider} />
-              </View>
-            );
-          }}/>
+        <MapView
+          style={styles.map}
+          initialRegion={this.state.region}
+
+          >
+          {this.state.dataSource.map(marker => (
+
+            <MapView.Marker
+              key={this.state.id++}
+              coordinate={marker}
+              title={marker.name}
+              centerOffset={{ x: -18, y: -60 }}
+              anchor={{ x: 0.69, y: 1 }}
+              image={require('./assets/flag-blue.png')}
+              />
+
+          ))}
+        </MapView>
       </View>
     );
   }
