@@ -165,15 +165,14 @@ export class Map extends Component {
   constructor(props, context) {
     super(props, context);
 
-    //let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: COUNTRIES,//ds.cloneWithRows(COUNTRIES),
+      dataSource: COUNTRIES,
       cache: true,
       region: {
         latitude: 37.78825,
         longitude: -122.4324,
         latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        longitudeDelta: 0.0421
       },
       id: 0
     };
@@ -197,21 +196,22 @@ export class Map extends Component {
   }
 
   //Scope issues with this
-  //onRegionChange(region) {
-  //  this.setState({ region });
-  //}
+  onRegionChange(region) {
+    this.setState({ region });
+  }
 
   render() {
-    var { width, height } = Dimensions.get('window');
+
+    const { width, height } = Dimensions.get('window');
+    
     return (
       <View style={styles.container}>
         <MapView
-          style={styles.map}
-          initialRegion={this.state.region}
+          style={ styles.map }
+          initialRegion={ this.state.region }
+          onRegionChange={ this.onRegionChange.bind(this) }>
 
-          >
-          {this.state.dataSource.map(marker => (
-
+          { this.state.dataSource.map(marker => (
             <MapView.Marker
               key={this.state.id++}
               coordinate={marker}
@@ -220,8 +220,8 @@ export class Map extends Component {
               anchor={{ x: 0.69, y: 1 }}
               image={pokeLogos[this.getRandomPokemonId()]}
             />
-
           ))}
+
         </MapView>
       </View>
     );
