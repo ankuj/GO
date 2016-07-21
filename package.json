@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "react": "15.2.1",
-    "react-native": "0.29.1"
+    "react-native": "0.29.1",
+    "react-native-admob": "^1.1.2",
+    "react-native-device-uuid": "^1.2.0"
   }
 }

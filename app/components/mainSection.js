@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { NavBar } from './navbar/navbar'
 import { Map } from './map/map'
+import { AdMobBanner, AdMobInterstitial } from 'react-native-admob'
+import { DeviceUUID } from 'react-native-device-uuid'
 
 export class MainSection extends Component {
   render() {
+//	  DeviceUUID.getUUID().then((uuid) => {
+//	    console.log(uuid);
+//	  });
+	  AdMobInterstitial.setAdUnitID('ca-app-pub-4784360138786078/9907153544');
+	  AdMobInterstitial.setTestDeviceID('4D98E460AE60002CD45B347CEDAE6AAE');
+	  AdMobInterstitial.requestAd(AdMobInterstitial.showAd);
     return (
       // Try removing the `flex: 1` on the parent View.
       // The parent will not have dimensions, so the children can't expand.
@@ -20,10 +28,13 @@ export class MainSection extends Component {
         </View>
 
         <View style={{flex: 3, backgroundColor: 'steelblue'}} >
-          <Text>Chat!Chat!Chat!</Text>
         </View>
-
-      </View>
+        <AdMobBanner
+        bannerSize="smartBannerLandscape"
+        adUnitID="ca-app-pub-4784360138786078/9907153544"
+        testDeviceID="4D98E460AE60002CD45B347CEDAE6AAE"
+        didFailToReceiveAdWithError={this.bannerError} />
+</View>
     );
   }
 }
