@@ -18,7 +18,7 @@ class PinService {
 
   createPokemonModel(resJson) {
 
-    let pokemonNames = ['Bulbasaur', 'Ivysaur', 'Venusaur', 'Charmander', 'Charmeleon', 'Charizard', 'Squirtle',
+    let pokemonNames = ['Unknown', 'Bulbasaur', 'Ivysaur', 'Venusaur', 'Charmander', 'Charmeleon', 'Charizard', 'Squirtle',
       'Wartortle', 'Blastoise', 'Caterpie', 'Metapod', 'Butterfree', 'Weedle', 'Kakuna', 'Beedrill', 'Pidgey',
       'Pidgeotto', 'Pidgeot', 'Rattata', 'Raticate', 'Spearow', 'Fearow', 'Ekans', 'Arbok', 'Pikachu', 'Raichu',
       'Sandshrew', 'Sandslash', 'Nidoran', 'Nidorina', 'Nidoqueen', 'Nidoran', 'Nidorino', 'Nidoking', 'Clefairy',
@@ -37,7 +37,8 @@ class PinService {
 
     return resJson.map((pin) => {
       return {
-        name: pokemonNames[pin.pokemonId - 1],
+        name: pokemonNames[pin.pokemonId],
+        pokemonId: pin.pokemonId,
         latitude: pin.latitude,
         longitude: pin.longitude
       }
