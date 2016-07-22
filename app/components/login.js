@@ -1,27 +1,46 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TouchableHighlight, Image, AsyncStorage } from 'react-native';
-import { GoogleSignin, Constants, GoogleSigninButton } from 'react-native-google-signin';
+import {GoogleSignin, GoogleSigninButton, Constants} from 'react-native-google-signin';
 
 export class Login extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      user: null
+    };
+
+  }
+
   navMainSection() {
-    this.props.navigator.push({
+    console.log('time to fly!!');
+    console.log('props:' + this.props.navigator.length);
+    //that.props.navigator.push({
+    //  id: 'main-section'
+    //});
+    this._navigator.push({
       id: 'main-section'
-    })
+    });
+
   }
 
-  setState(user) {
-
-    AsyncStorage.setItem('@UserData:key', JSON.stringify(user))
-      .then((re) => {
-        console.log('Success storing user:' + re);
-      })
-      .catch((error) => {
-        console.log('Error storing the key: ' + error);
-      });
-  }
+  //setState(user) {
+  //
+  //  AsyncStorage.setItem('@UserData:key', JSON.stringify(user))
+  //    .then((re) => {
+  //      console.log('Success storing user:' + re);
+  //    })
+  //    .catch((error) => {
+  //      console.log('Error storing the key: ' + error);
+  //    });
+  //}
 
   render() {
+
+    this._navigator = this.props.navigator;
+    this._navMainSection = this.navMainSection;
+
     return (
       // Try removing the `flex: 1` on the parent View.
       // The parent will not have dimensions, so the children can't expand.
@@ -34,10 +53,10 @@ export class Login extends Component {
         <View style={{flex: 6, backgroundColor: 'skyblue'}}>
 
           <GoogleSigninButton
-            style={{width: 48, height: 48}}
-            size={GoogleSigninButton.Size.Icon}
+            style={{width: 312, height: 48}}
+            size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
-            onPress={this.handleGoogleSignIn.bind(this)}/>
+            onPress={this._signIn.bind(this)}/>
 
         </View>
 
@@ -48,7 +67,7 @@ export class Login extends Component {
     );
   }
 
-  // Part of react lifecycle: https://facebook.github.io/react/docs/component-specs.html
+  //Part of react lifecycle:https://facebook.github.io/react/docs/component-specs.html
   componentDidMount() {
 
     GoogleSignin.configure({
@@ -56,42 +75,55 @@ export class Login extends Component {
         'email', 'profile', 'https://www.googleapis.com/auth/plus.profile.emails.read', 'https://www.googleapis.com/auth/plus.login'
       ],
       webClientId: "152106459338-0g2npu7m1eipe9166h9iik2dtmvonjii.apps.googleusercontent.com",
-      offlineAccess: true // if you want to access Google API on behalf of the user FROM YOUR SERVER
+      offlineAccess: false // if you want to access Google API on behalf of the user FROM YOUR SERVER
     }).then(() => {
-      GoogleSignin.currentUserAsync()
+
+      console.log('Google SignIn configuration complete.');
+
+      GoogleSignin.currentUserAsync().then((user) => {
+
+        console.log('The USER', user);
+        if (user !== null) {
+
+          console.log('props:' + this._navigator);
+
+          //debugger;
+          //this.setState({user: user});
+          //this._navigator.push( {'id': 'main-section'} );
+          //this._navigator.push( {'id': 'login'} );
+        }
+
+      }).done();
+
     });
-
-    function userAlreadySignedIn(user) {
-      console.log('USER', user);
-      return user !== null;
-    }
-
-    GoogleSignin.currentUserAsync().then((user) => {
-
-      if(userAlreadySignedIn(user)){
-        this.setState({user: user});
-        this.navMainSection();
-      }
-
-    }).done();
   }
 
-  handleGoogleSignIn() {
+  _signIn() {
 
+    console.log('I want:', this);
     GoogleSignin.signIn()
       .then((user) => {
 
-        this.setState({user: user});
-        this.navMainSection();
+        //this.setState({user: user});
+        console.log('User authenticated');
+        console.log('I have:', this);
+        //this.navMainSection();
+
+        if(this.navMainSection){
+          console.log('You got it!');
+          this.navMainSection(this);
+        } else{
+          console.log('Nop... not there!');
+        }
 
       })
       .catch((err) => {
 
-        console.log('SignIn error: ' + err);
+        console.log('SignIn Error: ' + err.toString());
 
         //todo: Hack to keep going to the map
-        this.navMainSection();
+        //this.navMainSection();
 
-      });
+      }).done();
   }
 }

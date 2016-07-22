@@ -1,15 +1,20 @@
 {
   "name": "WhereDoYouGo",
   "version": "0.0.1",
+  "description": "pinGo - Where do you GO",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "dev": "react-native run-android"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lcustodio/WhereDoYouGO.git"
+  },
   "dependencies": {
     "react": "15.2.1",
-    "react-native": "0.29.1",
-    "react-native-google-signin": "^0.6.1",
+    "react-native": "0.30.0",
+    "react-native-google-signin": "^0.8.0",
     "react-native-maps": "^0.7.1"
   }
 }

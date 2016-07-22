@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { NavBar } from './navbar/navbar'
-import { Map } from './map/map'
+//import { Map } from './map/map'
 
 export class MainSection extends Component {
   render() {
@@ -16,7 +16,7 @@ export class MainSection extends Component {
         </View>
 
         <View style={{flex: 6, backgroundColor: 'skyblue'}} >
-          <Map/>
+
         </View>
 
         <View style={{flex: 3, backgroundColor: 'steelblue'}} >
