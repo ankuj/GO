@@ -15,10 +15,11 @@ export class Login extends Component {
 
   navMainSection() {
     console.log('time to fly!!');
-    console.log('props:' + this.props.navigator.length);
+
     //that.props.navigator.push({
     //  id: 'main-section'
     //});
+
     this._navigator.push({
       id: 'main-section'
     });
@@ -78,15 +79,24 @@ export class Login extends Component {
       offlineAccess: false // if you want to access Google API on behalf of the user FROM YOUR SERVER
     }).then(() => {
 
-      console.log('Google SignIn configuration complete.');
+      console.log('*** Google SignIn configuration complete.');
 
       GoogleSignin.currentUserAsync().then((user) => {
 
-        console.log('The USER', user);
+        console.log('*** The USER', user);
         if (user !== null) {
 
-          console.log('props:' + this._navigator);
 
+          if(this.navMainSection){
+
+            console.log('You got it! REDIRECTING');
+            this.navMainSection();
+
+          } else{
+
+            console.log('Nop... not there!');
+
+          }
           //debugger;
           //this.setState({user: user});
           //this._navigator.push( {'id': 'main-section'} );
@@ -104,16 +114,18 @@ export class Login extends Component {
     GoogleSignin.signIn()
       .then((user) => {
 
-        //this.setState({user: user});
-        console.log('User authenticated');
+        console.log('User authenticated ', user);
         console.log('I have:', this);
-        //this.navMainSection();
 
         if(this.navMainSection){
+
           console.log('You got it!');
-          this.navMainSection(this);
+          this.navMainSection();
+
         } else{
+
           console.log('Nop... not there!');
+
         }
 
       })
