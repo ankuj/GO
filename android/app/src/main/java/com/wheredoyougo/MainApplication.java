@@ -13,7 +13,9 @@ import com.airbnb.android.react.maps.MapsPackage;
 
 import java.util.Arrays;
 import java.util.List;
-import co.apptailor.googlesignin.RNGoogleSigninPackage; 
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.sbugert.rnadmob.RNAdMobPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -28,7 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new MapsPackage(),
-          new RNGoogleSigninPackage()
+          new RNGoogleSigninPackage(),
+          new RNAdMobPackage()
       );
     }
   };
