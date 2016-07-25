@@ -46,23 +46,22 @@ export class Login extends Component {
       // Try removing the `flex: 1` on the parent View.
       // The parent will not have dimensions, so the children can't expand.
       // What if you add `height: 300` instead of `flex: 1`?
+    		
       <View style={{flex: 1}}>
 
-        <View style={{flex: 1, backgroundColor: 'powderblue'}}>
+      <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}></View>
+      <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}><Image source={require('./img/PokemonGO.png')} /></View>
+      <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}></View>
+        <View style={{flex: 3, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}>
+        <GoogleSigninButton
+        style={{width: 200, height: 48}}
+        size={GoogleSigninButton.Size.Wide}
+        color={GoogleSigninButton.Color.Dark}
+        onPress={this._signIn.bind(this)}/>
+
+
         </View>
-
-        <View style={{flex: 6, backgroundColor: 'skyblue'}}>
-
-          <GoogleSigninButton
-            style={{width: 312, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={this._signIn.bind(this)}/>
-
-        </View>
-
-        <View style={{flex: 1, backgroundColor: 'steelblue'}}>
-        </View>
+ 
 
       </View>
     );
