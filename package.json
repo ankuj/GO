@@ -15,7 +15,9 @@
     "react": "15.2.1",
     "react-native": "0.30.0",
     "react-native-admob": "^1.1.2",
+    "react-native-gifted-messenger": "^0.1.4",
     "react-native-google-signin": "^0.8.0",
     "react-native-maps": "^0.7.1"
+    
   }
 }
