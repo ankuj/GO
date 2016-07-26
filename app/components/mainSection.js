@@ -14,10 +14,6 @@ export class MainSection extends Component {
       // What if you add `height: 300` instead of `flex: 1`?
       <View style={{flex: 1}}>
 
-        <View style={{flex: 1, backgroundColor: 'powderblue'}} >
-          <NavBar/>
-        </View>
-
         <View style={{flex: 7}} >
           <Map/>
         </View>
@@ -28,3 +24,7 @@ export class MainSection extends Component {
     );
   }
 }
+//todo I'm not 100% convinced that the text over the map is the best approach.
+//<View style={{flex: 1, backgroundColor: 'powderblue'}} >
+//  <NavBar/>
+//</View>

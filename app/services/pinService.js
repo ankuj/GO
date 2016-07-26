@@ -1,7 +1,47 @@
 class PinService {
 
-  getListOfAllPins() {
+  getListOfAllPins(latitude, longitude) {
 
+    return this.getPokemonGoApi(latitude, longitude);
+
+  }
+
+  getPokemonGoApi(latitude, longitude) {
+
+    return navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log('Getting the current location', position);
+
+        return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          //body: JSON.stringify({
+          //  latitude: position.coords.latitude,
+          //  longitude: position.coords.longitude,
+          //})
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((resJson) => {
+            return this.createPokemonModel(resJson);
+          })
+          .catch((error) => {
+            console.error(error.message);
+            return false;
+          });
+
+      },
+      (error) => alert(error.message),
+      {}
+    );
+
+  }
+
+  getCommunityPicks() {
     return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/pins')
       .then((res) => {
         return res.json();
@@ -13,7 +53,6 @@ class PinService {
         console.error(error.message);
         return false;
       });
-
   }
 
   createPokemonModel(resJson) {

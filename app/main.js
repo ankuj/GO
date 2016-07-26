@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
-import { Navigator } from 'react-native';
+import { Navigator, View, Text } from 'react-native';
 
 import { Login } from './components/login';
 import { MainSection } from './components/mainSection';
+
+import { DebugMap } from './components/debug/debugMap'
+import { TimeOutMap } from './components/debug/timeOutMap/timeOutMap'
 
 //import Settings from './settings';
 //const settings = Settings.load();
 
 export class WhereDoYouGo extends Component {
   render() {
+
+    //return (
+    //  <DebugMap/>
+    //);
+
+    //return (
+    //  <TimeOutMap/>
+    //);
+
     return (
-
     <Navigator
-
       initialRoute={{id: 'login'}}
       renderScene={this.navigatorRenderScene}/>
-
-
     );
   }
 
