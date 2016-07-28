@@ -4,8 +4,9 @@ import { Navigator, View, Text } from 'react-native';
 import { Login } from './components/login';
 import { MainSection } from './components/mainSection';
 
-import { DebugMap } from './components/debug/debugMap'
-import { TimeOutMap } from './components/debug/timeOutMap/timeOutMap'
+//import { DebugMap } from './components/debug/debugMap'
+//import { TimeOutMap } from './components/debug/timeOutMap/timeOutMap'
+import { PokeMap } from './components/debug/pokeMap/pokeMap'
 
 //import Settings from './settings';
 //const settings = Settings.load();
@@ -19,6 +20,10 @@ export class WhereDoYouGo extends Component {
 
     //return (
     //  <TimeOutMap/>
+    //);
+
+    //return (
+    //  <PokeMap/>
     //);
 
     return (

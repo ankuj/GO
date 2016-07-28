@@ -5,7 +5,10 @@ import { Marker } from 'react-native-maps';
 import CountDown from './countdown';
 import getPokemon from './pokedex';
 
-const PokeMarker = ({ latitude, longitude, pokemonId, expiration_time, index }) => {
+const PokeMarker = ( {latitude, longitude, pokemonId, expiration_time, index }) => {
+
+  console.log('Getting to PokeMarker!!');
+
   const { name, image } = getPokemon(pokemonId);
   const interval = -(new Date().getTime() - (expiration_time * 1000))/1000;
   return (
@@ -16,6 +19,7 @@ const PokeMarker = ({ latitude, longitude, pokemonId, expiration_time, index }) 
       </View>
     </Marker>
   );
+
 };
 
 PokeMarker.propTypes = {

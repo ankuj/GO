@@ -170,10 +170,10 @@ export class Map extends Component {
       dataSource: [],
       cache: true,
       region: {
-        latitude: 45.1885,
-        longitude: 5.7245,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421
+        latitude: -0.610653,
+        longitude: -90.667648,
+        latitudeDelta: 0.0100,
+        longitudeDelta: 0.0100
       },
       id: 0
     };
@@ -183,6 +183,7 @@ export class Map extends Component {
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
+
         return pinService.getListOfAllPins(position)
           .then((result) => {
 

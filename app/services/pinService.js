@@ -12,15 +12,15 @@ class PinService {
     console.log('Getting the current location', position);
 
     return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-      }
-      //body: JSON.stringify({
-      //  latitude: position.coords.latitude,
-      //  longitude: position.coords.longitude,
-      //})
+      },
+      body: JSON.stringify({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      })
     })
       .then((res) => {
         return res.json();

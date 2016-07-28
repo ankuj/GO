@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { removePokemon } from './actions/map.actions';
+//import { removePokemon } from './actions/map.actions';
 
 const getTime = (sec_num) => {
   let days    = Math.floor(sec_num / (3600 * 24));
@@ -35,7 +35,8 @@ export default class CountDown extends Component {
     this.setState({ seconds: this.state.seconds - 1 });
     if (this.state.seconds <= 1) {
       clearInterval(this.interval);
-      removePokemon(this.props.index);
+      console.log('REMOVE ACTION!');
+      //removePokemon(this.props.index);
     }
   }
 
