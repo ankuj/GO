@@ -12,7 +12,7 @@ export class MobAds extends Component {
 
     if(! globalState.alredyInitialized) {
       AdMobInterstitial.setAdUnitID('ca-app-pub-4784360138786078/9907153544');
-      AdMobInterstitial.setTestDeviceID('EMULATOR'); //4D98E460AE60002CD45B347CEDAE6AAE
+      AdMobInterstitial.setTestDeviceID('4D98E460AE60002CD45B347CEDAE6AAE'); //4D98E460AE60002CD45B347CEDAE6AAE
       AdMobInterstitial.requestAd(AdMobInterstitial.showAd);
     }
     globalState.alredyInitialized = true;
@@ -25,7 +25,7 @@ export class MobAds extends Component {
       <AdMobBanner
         bannerSize="banner"
         adUnitID="ca-app-pub-4784360138786078/9907153544"
-        testDeviceID="EMULATOR"
+        testDeviceID="4D98E460AE60002CD45B347CEDAE6AAE"
         didFailToReceiveAdWithError={this.bannerError} />
 
     );

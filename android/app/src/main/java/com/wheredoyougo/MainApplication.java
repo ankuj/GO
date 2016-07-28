@@ -16,6 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
+import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -31,7 +33,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new MapsPackage(),
           new RNGoogleSigninPackage(),
-          new RNAdMobPackage()
+          new RNAdMobPackage(),
+          new ExtraDimensionsPackage()
       );
     }
   };
