@@ -1,36 +1,43 @@
 class PinService {
 
-  getListOfAllPins(latitude, longitude) {
+  getListOfAllPins() {
 
-    return this.getPokemonGoApi(latitude, longitude);
+    //return this.getPokemonGoApi();
+    return this.getCommunityPicks();
 
   }
 
-  getPokemonGoApi(latitude, longitude) {
+  getPokemonGoApi() {
 
     return navigator.geolocation.getCurrentPosition(
       (position) => {
+
         console.log('Getting the current location', position);
 
         return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
+          method: 'GET'
+          //headers: {
+          //  'Accept': 'application/json',
+          //  'Content-Type': 'application/json',
+          //}
           //body: JSON.stringify({
           //  latitude: position.coords.latitude,
           //  longitude: position.coords.longitude,
           //})
         })
           .then((res) => {
+            console.log('before the json', res);
             return res.json();
           })
           .then((resJson) => {
-            return this.createPokemonModel(resJson);
+            console.info('creating the model', resJson);
+            let a = this.createPokemonModel(resJson);
+            console.log(a);
+            return a;
+            //return this.createPokemonModel(resJson);
           })
           .catch((error) => {
-            console.error(error.message);
+            console.error('Pin service error', error);
             return false;
           });
 
@@ -79,7 +86,9 @@ class PinService {
         name: pokemonNames[pin.pokemonId],
         pokemonId: pin.pokemonId,
         latitude: pin.latitude,
-        longitude: pin.longitude
+        longitude: pin.longitude,
+        //expiration_time: pin.countdown,
+        //index: pin.pokemonId
       }
     })
   }

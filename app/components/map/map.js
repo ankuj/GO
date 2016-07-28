@@ -181,8 +181,13 @@ export class Map extends Component {
 
   loadPins(){
 
-    pinService.getListOfAllPins()
+    //console.warn('this is the result: ', pinService.getListOfAllPins());
+
+    return pinService.getListOfAllPins()
       .then((result) => {
+
+        debugger;
+
         console.log(JSON.stringify(result));
         this.setState( { dataSource: result } );
       })
@@ -226,13 +231,11 @@ export class Map extends Component {
     return (
       <View style={styles.container}>
 
-
-
         <MapView
           style={ styles.map }
           initialRegion={ this.state.region }
           onRegionChange={ this.onRegionChange.bind(this) }
-          showsUserLocation={true}>
+          showsUserLocation={ true }>
 
           { this.state.dataSource.map(marker => (
             <MapView.Marker
