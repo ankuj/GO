@@ -181,19 +181,21 @@ export class Map extends Component {
 
   loadPins(){
 
-    //console.warn('this is the result: ', pinService.getListOfAllPins());
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        return pinService.getListOfAllPins(position)
+          .then((result) => {
 
-    return pinService.getListOfAllPins()
-      .then((result) => {
-
-        debugger;
-
-        console.log(JSON.stringify(result));
-        this.setState( { dataSource: result } );
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+            console.log(JSON.stringify(result));
+            this.setState( { dataSource: result } );
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      },
+      (error) => alert(error.message), //Error handling
+      {enableHighAccuracy: true, timeout: 5000} //option
+    );
   }
 
   componentDidMount() {

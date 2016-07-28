@@ -1,50 +1,37 @@
 class PinService {
 
-  getListOfAllPins() {
+  getListOfAllPins(position) {
 
-    //return this.getPokemonGoApi();
-    return this.getCommunityPicks();
+    return this.getPokemonGoApi(position);
+    //return this.getCommunityPicks();
 
   }
 
-  getPokemonGoApi() {
+  getPokemonGoApi(position) {
 
-    return navigator.geolocation.getCurrentPosition(
-      (position) => {
+    console.log('Getting the current location', position);
 
-        console.log('Getting the current location', position);
-
-        return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
-          method: 'GET'
-          //headers: {
-          //  'Accept': 'application/json',
-          //  'Content-Type': 'application/json',
-          //}
-          //body: JSON.stringify({
-          //  latitude: position.coords.latitude,
-          //  longitude: position.coords.longitude,
-          //})
-        })
-          .then((res) => {
-            console.log('before the json', res);
-            return res.json();
-          })
-          .then((resJson) => {
-            console.info('creating the model', resJson);
-            let a = this.createPokemonModel(resJson);
-            console.log(a);
-            return a;
-            //return this.createPokemonModel(resJson);
-          })
-          .catch((error) => {
-            console.error('Pin service error', error);
-            return false;
-          });
-
-      },
-      (error) => alert(error.message),
-      {}
-    );
+    return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+      //body: JSON.stringify({
+      //  latitude: position.coords.latitude,
+      //  longitude: position.coords.longitude,
+      //})
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((resJson) => {
+        return this.createPokemonModel(resJson);
+      })
+      .catch((error) => {
+        console.error('Pin service error', error);
+        return false;
+      });
 
   }
 
@@ -87,8 +74,8 @@ class PinService {
         pokemonId: pin.pokemonId,
         latitude: pin.latitude,
         longitude: pin.longitude,
-        //expiration_time: pin.countdown,
-        //index: pin.pokemonId
+        expiration_time: pin.countdown,
+        index: pin.pokemonId
       }
     })
   }
