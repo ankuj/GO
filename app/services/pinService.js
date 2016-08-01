@@ -11,15 +11,16 @@ class PinService {
 
     console.log('Getting the current location', position);
 
-    return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
+    //return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
+    return fetch('http://192.168.1.106:3000/v1/pokemon/go/wild/pins', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+        latitude: position.latitude,
+        longitude: position.longitude,
       })
     })
       .then((res) => {
@@ -29,7 +30,7 @@ class PinService {
         return this.createPokemonModel(resJson);
       })
       .catch((error) => {
-        console.error('Pin service error', error);
+        console.info('Pin service error', error);
         return false;
       });
 

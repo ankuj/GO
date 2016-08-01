@@ -170,39 +170,38 @@ export class Map extends Component {
       dataSource: [],
       cache: true,
       region: {
-        latitude: -0.610653,
-        longitude: -90.667648,
-        latitudeDelta: 0.0100,
-        longitudeDelta: 0.0100
+        latitude: 45.192968024785166,//-0.610653,
+        longitude: 5.7297637313604355,//-90.667648,
+        latitudeDelta: 0.0011338896060522075,
+        longitudeDelta: 0.0009404495358467102
       },
       id: 0
     };
   }
 
-  loadPins(){
+  loadPins(position){
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
+    return pinService.getListOfAllPins(position)
+      .then((result) => {
 
-        return pinService.getListOfAllPins(position)
-          .then((result) => {
+        console.log(JSON.stringify(result));
+        this.setState( { dataSource: result } );
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
 
-            console.log(JSON.stringify(result));
-            this.setState( { dataSource: result } );
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
-      },
-      (error) => alert(error.message), //Error handling
-      {enableHighAccuracy: true, timeout: 5000} //option
-    );
   }
 
   componentDidMount() {
 
-    this.loadPins();
-
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+      return this.loadPins({latitude: position.coords.latitude, longitude: position.coords.longitude});
+      },
+      (error) => alert(error.message), //Error handling
+      {enableHighAccuracy: true, timeout: 5000} //option
+    );
   }
 
   //toggleCache() {
@@ -216,14 +215,16 @@ export class Map extends Component {
   //  });
   //}
 
-  getRandomPokemonId() {
-    const min = 1;
-    const max = 150;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  //getRandomPokemonId() {
+  //  const min = 1;
+  //  const max = 150;
+  //  return Math.floor(Math.random() * (max - min + 1)) + min;
+  //}
 
   //Scope issues with this
   onRegionChange(region) {
+    console.log('New region: ', region);
+    this.loadPins(region);
     //this.setState({ region });
   }
 
@@ -237,8 +238,9 @@ export class Map extends Component {
         <MapView
           style={ styles.map }
           initialRegion={ this.state.region }
-          onRegionChange={ this.onRegionChange.bind(this) }
-          showsUserLocation={ true }>
+          onRegionChangeComplete={ this.onRegionChange.bind(this) }
+          showsUserLocation={ true }
+          showsScale={true}>
 
           { this.state.dataSource.map(marker => (
             <MapView.Marker
