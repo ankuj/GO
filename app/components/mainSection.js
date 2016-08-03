@@ -5,11 +5,18 @@ import { Map } from './map/map'
 import { MobAds } from './ads/mobAds'
 import GiftedMessenger from 'react-native-gifted-messenger'
 var ExtraDimensions = require('react-native-extra-dimensions-android');
+const io = new WebSocket('ws://localhost:3000')
+
 export class MainSection extends Component {
 
+	componentDidMount(){
+		io.send("this info")
+		io.onclose = e => console.log('onclose', e.code, e.reason)
+		io.onerror = e => console.log('onerror', e.message)
+		io.onopen = () => console.log('connected !')
+	}  
 
   render() {
-
     return (
     		
       // Try removing the `flex: 1` on the parent View.
