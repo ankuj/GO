@@ -170,8 +170,8 @@ export class Map extends Component {
       dataSource: [],
       cache: true,
       region: {
-        latitude: 45.192968024785166,//-0.610653,
-        longitude: 5.7297637313604355,//-90.667648,
+        latitude: -0.610653, //45.192968024785166
+        longitude: -90.667648, //5.7297637313604355
         latitudeDelta: 0.0011338896060522075,
         longitudeDelta: 0.0009404495358467102
       },

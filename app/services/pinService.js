@@ -12,7 +12,8 @@ class PinService {
     console.log('Getting the current location', position);
 
     //return fetch('http://wheredoyougo-api.herokuapp.com/v1/pokemon/go/pins/', {
-    return fetch('http://192.168.1.106:3000/v1/pokemon/go/wild/pins', {
+    //return fetch('http://192.168.1.106:3000/v1/pokemon/go/wild/pins', {
+    return fetch('http://139.59.210.176:3000/v1/pokemon/go/pins', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
